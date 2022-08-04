@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
-import ICheckboxes from '../types/ICheckboxes';
-import IRates from '../types/IRates';
+import ICheckboxes from '../../types/ICheckboxes';
+import IRates from '../../types/IRates';
 
 const defaultCheckboxes = {
   'all': false,
@@ -24,15 +24,15 @@ export function FiltersProvider({ children }: { children: React.ReactNode }) {
   const [rates, setRates] = useState<IRates>(defaultRates)
   const [checkboxes, setCheckboxes] = useState<ICheckboxes>(defaultCheckboxes);
 
-  // useEffect(() => {
-  //   axios.get('https://api.apilayer.com/exchangerates_data/latest?symbols=EUR,USD&base=RUB', {
-  //     headers: { 'apikey': 'nxjCcWbimdb3Y2FxpB7AHXy0I94RjPdk' },
-  //     maxRedirects: 1,
-  //   })
-  //     .then((res) => res.data)
-  //     .then(({ rates }: { rates: IRates }) => setRates((prev) => ({...prev, ...rates})))
-  //     .catch(console.log)
-  // }, [])
+  useEffect(() => {
+    axios.get('https://api.apilayer.com/exchangerates_data/latest?symbols=EUR,USD&base=RUB', {
+      headers: { 'apikey': 'nxjCcWbimdb3Y2FxpB7AHXy0I94RjPdk' },
+      maxRedirects: 1,
+    })
+      .then((res) => res.data)
+      .then(({ rates }: { rates: IRates }) => setRates((prev) => ({...prev, ...rates})))
+      .catch(console.log)
+  }, []);
 
   const handleCheckboxes = (param: string, only?: boolean) => {
     if (only) {

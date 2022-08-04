@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Container } from './components/styles/Container';
 import Filters from './components/Filters';
 import Ticket from './components/Ticket';
 import ITicket from './types/ITicket';
-import { FiltersContext } from './hooks/filtersContext';
+import Header from './components/Header';
+import useFilters from './hooks/useFilters';
 
 function App() {
-  const { checkboxes } = useContext(FiltersContext);
+  const { checkboxes } = useFilters();
 
   const [tickets, setTickets] = useState<ITicket[]>([]);
   const [filteredTickets, setFilteredTickets] = useState<ITicket[]>([]);
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <Container>
+      <Header />
       <Wrapper>
         <Filters />
         <TicketsContainer>
@@ -56,7 +58,11 @@ function App() {
 const Wrapper = styled.main`
   display: flex;
   gap: 1.5rem;
-  margin-top: 4rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 const TicketsContainer = styled.section`
   display flex;

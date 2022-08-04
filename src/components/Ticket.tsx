@@ -1,8 +1,17 @@
-import { useContext } from 'react';
-import styled from 'styled-components';
-import { IoIosAirplane } from 'react-icons/io';
-import { FiltersContext } from '../hooks/filtersContext';
 import ITicket from '../types/ITicket';
+import useFilters from '../hooks/useFilters';
+import {
+  Card,
+  Purchase,
+  PurchaseButton,
+  LogoImg,
+  FlightInfo,
+  TimeBlock,
+  TimeBig,
+  Date,
+  ArrowBlock,
+  AirplaneIcon,
+} from './styles/Ticket.styled';
 
 const stopsMapping = [
   'Без пересадок',
@@ -17,7 +26,7 @@ const currenciesMapping = {
 }
 
 function Ticket({ data } :{ data: ITicket }) {
-  const { currency, rates } = useContext(FiltersContext);
+  const { currency, rates } = useFilters();
   
   return (
     <Card>
@@ -47,76 +56,7 @@ function Ticket({ data } :{ data: ITicket }) {
   )
 }
 
-const Card = styled.div`
-  display: flex;
-  box-shadow: var(--shadow);
-  width: 100%;
-  background-color: var(--white-color);
-`;
-const Purchase = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  border-right: 1px solid var(--font-light-color);
-`;
-const PurchaseButton = styled.button`
-  width: 100%;
-  padding: 1rem 0;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
-  white-space: pre-line;
-  font-weight: var(--fw-medium);
-  box-shadow: var(--shadow);
 
-  &:hover {
-    background-color: var(--hover-secondary-color);
-  }
-`;
-const LogoImg = styled.img`
-  width: 150px;
-  height: 75px;
-  object-fit: cover;
-  object-position: center;
-`;
-const FlightInfo = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-  flex-basis: 1;
-  padding: 1.5rem;
-  flex-grow: 1;
-`;
-const TimeBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const TimeBig = styled.h4`
-  font-size: 40px;
-  margin: 0 0 0.5rem 0;
-  font-weight: var(--fw-medium);
-`;
-const Date = styled.span`
-  color: var(--font-light-color);
-`;
-const ArrowBlock = styled.div`
-  position: relative;
-  border-bottom: 1px solid var(--font-light-color);
-  padding: 0.6rem 2rem;
-  text-transform: uppercase;
-  margin-left: -2.5rem;
-`;
-const AirplaneIcon = styled(IoIosAirplane)`
-  position: absolute;
-  bottom: -0.5rem;
-  right: -0.5rem;
-`;
 
 
 export default Ticket;

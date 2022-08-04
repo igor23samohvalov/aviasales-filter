@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { FiltersProvider } from './hooks/filtersContext';
+import { FiltersProvider } from './components/hoc/filtersContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
