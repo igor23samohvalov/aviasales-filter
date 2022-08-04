@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { IoIosAirplane } from 'react-icons/io';
+import { styledTheme } from './Global';
 
 export const Card = styled.div`
   display: flex;
-  box-shadow: var(--shadow);
+  box-shadow: ${styledTheme.shadow};
   width: 100%;
-  background-color: var(--white-color);
+  background-color: ${styledTheme.whiteColor};
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -17,27 +18,27 @@ export const Purchase = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  border-right: 1px solid var(--font-light-color);
+  border-right: 1px solid ${styledTheme.fontLightColor};
 
   @media (max-width: 768px) {
-    border-bottom: 1px solid var(--font-light-color);
+    border-bottom: 1px solid ${styledTheme.fontLightColor};
   };
 `;
 export const PurchaseButton = styled.button`
   width: 100%;
   padding: 1rem 0;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  background-color: ${styledTheme.secondaryColor};
+  color: ${styledTheme.whiteColor};
   border: none;
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
   white-space: pre-line;
-  font-weight: var(--fw-medium);
-  box-shadow: var(--shadow);
+  font-weight: ${styledTheme.fwMedium};
+  box-shadow: ${styledTheme.shadow};
 
   &:hover {
-    background-color: var(--hover-secondary-color);
+    background-color: ${styledTheme.hoverSecondaryColor};
   }
 `;
 export const LogoImg = styled.img`
@@ -74,18 +75,18 @@ export const TimeBlock = styled.div`
 export const TimeBig = styled.h4`
   font-size: 40px;
   margin: 0 0 0.5rem 0;
-  font-weight: var(--fw-medium);
+  font-weight: ${styledTheme.fwMedium};
 
   @media (max-width: 768px) {
     font-size: 24px;
   }
 `;
 export const Date = styled.span`
-  color: var(--font-light-color);
+  color: ${styledTheme.fontLightColor};
 `;
 export const ArrowBlock = styled.div`
   position: relative;
-  border-bottom: 1px solid var(--font-light-color);
+  border-bottom: 1px solid ${styledTheme.fontLightColor};
   padding: 0.6rem 2rem;
   text-transform: uppercase;
   margin-left: -2.5rem;

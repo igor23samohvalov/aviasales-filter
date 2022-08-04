@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { styledTheme } from './Global';
 
 export const CheckboxContainer = styled.div`
   flex-grow: 1;
@@ -10,7 +11,7 @@ export const CheckboxContainer = styled.div`
   margin-right: -2rem;
 
   &.checked {
-    background-color: var(--hover-primary-color);
+    background-color: ${styledTheme.hoverPrimaryColor};
 
     &:hover > button {
       display: block;
@@ -20,14 +21,14 @@ export const CheckboxContainer = styled.div`
 export const StyledCheckbox = styled.input`
   width: 1.25rem;
   height: 1.25rem;
-  border: 1px solid var(--font-primary-color);
+  border: 1px solid ${styledTheme.fontPrimaryColor};
   border-radius: 1px;
 `;
 export const StyledButton = styled.button`
   display: none;
   cursor: pointer;
   text-transform: uppercase;
-  color: var(--primary-color);
+  color: ${styledTheme.primaryColor};
   background-color: transparent;
   margin-left: auto;
   border: none;

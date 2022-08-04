@@ -1,6 +1,8 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import GlobalStyles from './components/styles/Global';
 import App from './App';
 import { FiltersProvider } from './components/hoc/filtersContext';
 
@@ -10,6 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <FiltersProvider>
+      <GlobalStyles />
       <App />
     </FiltersProvider>
   </React.StrictMode>
