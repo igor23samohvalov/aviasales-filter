@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
-import useFilters from '../hooks/useFilters';
+import { IoIosAirplane } from 'react-icons/io';
+import { FiltersContext } from '../hooks/filtersContext';
 import ITicket from '../types/ITicket';
 
 const stopsMapping = [
@@ -9,20 +11,20 @@ const stopsMapping = [
   '3 пересадки',
 ];
 const currenciesMapping = {
-  'RUB': (price: string) => `${price} ₽`,
-  'USD': (price: string) => `${price} $`,
-  'EUR': (price: string) => `${price} €`
+  'RUB': (price: number, rate: number) => `Купить\nза  ${Math.round(price * rate)} ₽`,
+  'USD': (price: number, rate: number) => `Купить\nза  ${Math.round(price * rate)} $`,
+  'EUR': (price: number, rate: number) => `Купить\nза  ${Math.round(price * rate)} €`
 }
 
 function Ticket({ data } :{ data: ITicket }) {
-  const { currency } = useFilters();
+  const { currency, rates } = useContext(FiltersContext);
   
   return (
     <Card>
       <Purchase>
-        <h3 style={{ margin: 0 }}>Turkish Airlines</h3>
+        <LogoImg src={`./logo/${data.carrier}.jpg`} alt="logo" />
         <PurchaseButton>
-          {currenciesMapping[currency as keyof typeof currenciesMapping](`Купить за ${data.price}`)}
+          {currenciesMapping[currency as keyof typeof currenciesMapping](data.price, rates[currency])}
         </PurchaseButton>
       </Purchase>
       <FlightInfo>
@@ -31,7 +33,10 @@ function Ticket({ data } :{ data: ITicket }) {
           <strong>{data.origin}, {data.origin_name}</strong>
           <Date>{data.departure_date}</Date>
         </TimeBlock>
-        <ArrowBlock>{stopsMapping[data.stops]}</ArrowBlock>
+        <ArrowBlock>
+          {stopsMapping[data.stops]}
+          <AirplaneIcon />
+        </ArrowBlock>
         <TimeBlock>
           <TimeBig>{data.arrival_time}</TimeBig>
           <strong>{data.destination_name}, {data.destination}</strong>
@@ -53,14 +58,39 @@ const Purchase = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.5rem;
   border-right: 1px solid var(--font-light-color);
+`;
+const PurchaseButton = styled.button`
+  width: 100%;
+  padding: 1rem 0;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  white-space: pre-line;
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow);
+
+  &:hover {
+    background-color: var(--hover-secondary-color);
+  }
+`;
+const LogoImg = styled.img`
+  width: 150px;
+  height: 75px;
+  object-fit: cover;
+  object-position: center;
 `;
 const FlightInfo = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
-  padding: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  flex-basis: 1;
+  padding: 1.5rem;
   flex-grow: 1;
 `;
 const TimeBlock = styled.div`
@@ -76,20 +106,18 @@ const Date = styled.span`
   color: var(--font-light-color);
 `;
 const ArrowBlock = styled.div`
+  position: relative;
   border-bottom: 1px solid var(--font-light-color);
-  padding-bottom: 0.5rem;
+  padding: 0.6rem 2rem;
   text-transform: uppercase;
+  margin-left: -2.5rem;
 `;
-const PurchaseButton = styled.button`
-  width: 100%;
-  padding: 1rem 2.5rem;
-  background-color: var(--secondary-color);
-  color: var(--white-color);
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
+const AirplaneIcon = styled(IoIosAirplane)`
+  position: absolute;
+  bottom: -0.5rem;
+  right: -0.5rem;
 `;
+
 
 export default Ticket;
 

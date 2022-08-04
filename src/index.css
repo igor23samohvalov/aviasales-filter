@@ -1,7 +1,8 @@
 :root {
   --primary-color: #2096F3;
   --secondary-color: #FF6D00;
-  --hover-color: #d4f2fc;
+  --hover-primary-color: #d4f2fc;
+  --hover-secondary-color: #FF8123;
   --white-color: #fff;
   --font-primary-color: #4A4A4A;
   --font-light-color: #A8AFB1;

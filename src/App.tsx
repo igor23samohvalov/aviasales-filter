@@ -7,13 +7,6 @@ import Ticket from './components/Ticket';
 import ITicket from './types/ITicket';
 import { FiltersContext } from './hooks/filtersContext';
 
-const filterMapping = {
-  'none': 0,
-  'one': 1,
-  'two': 2,
-  'three': 3,
-}
-
 function App() {
   const { checkboxes } = useContext(FiltersContext);
 
@@ -28,8 +21,12 @@ function App() {
         setFilteredTickets(tickets);
       })
   }, []);
+  
   useEffect(() => {
-    if (checkboxes.all) setFilteredTickets(tickets)
+    if (checkboxes.only) setFilteredTickets(tickets.filter((t) => (
+      String(t.stops) === checkboxes.only || checkboxes.only === 'all'
+    )))
+    else if (checkboxes.all) setFilteredTickets(tickets)
     else if (!Object.values(checkboxes).find((bol) => bol)) setFilteredTickets(tickets)
     else {
       const filterKeys = Object.entries(checkboxes)
@@ -37,9 +34,7 @@ function App() {
         .map(([key]) => key);
       
       const newTickets = tickets
-        .filter(({ stops }) => (
-          filterKeys.some((key) => filterMapping[key as keyof typeof filterMapping] === stops
-        )))
+        .filter(({ stops }) => (filterKeys.some((key) => key === String(stops))))
         .sort((a, b) => a.stops - b.stops);
 
       setFilteredTickets(newTickets);
