@@ -9,6 +9,7 @@ export const Card = styled.section`
   height: fit-content;
   box-shadow: ${styledTheme.shadow};
   background-color: ${styledTheme.whiteColor};
+  margin-right: 1.5rem;
 
   > * {
     display: flex;
@@ -17,6 +18,10 @@ export const Card = styled.section`
   h4 {
     text-transform: uppercase;
     margin-top: 0;
+  };
+
+  @media (max-width: 768px) {
+    margin: 0 0 1.5rem 0;
   };
 `;
 export const CurrencyBadge = styled.div`

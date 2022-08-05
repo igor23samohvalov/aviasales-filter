@@ -7,6 +7,7 @@ export const Card = styled.div`
   box-shadow: ${styledTheme.shadow};
   width: 100%;
   background-color: ${styledTheme.whiteColor};
+  margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
     flex-direction: column;

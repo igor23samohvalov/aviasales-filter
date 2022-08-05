@@ -18,8 +18,9 @@ function App() {
     axios.get('/tickets.json')
       .then((res) => res.data)
       .then(({ tickets }) => {
-        setTickets(tickets);
-        setFilteredTickets(tickets);
+        const sortedTickets = tickets.sort((a: { stops: number; }, b: { stops: number; }) => a.stops - b.stops);
+        setTickets(sortedTickets);
+        setFilteredTickets(sortedTickets);
       })
   }, []);
   
@@ -33,10 +34,8 @@ function App() {
       const filterKeys = Object.entries(checkboxes)
         .filter(([_, value]) => value)
         .map(([key]) => key);
-      
       const newTickets = tickets
-        .filter(({ stops }) => (filterKeys.some((key) => key === String(stops))))
-        .sort((a, b) => a.stops - b.stops);
+        .filter(({ stops }) => (filterKeys.some((key) => key === String(stops))));
 
       setFilteredTickets(newTickets);
     }
@@ -57,18 +56,18 @@ function App() {
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 1.5rem;
+  align-items: flex-start;
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: stretch;
   }
 `;
 const TicketsContainer = styled.section`
   display flex;
   flex-direction: column;
   flex-grow: 3;
-  gap: 1.5rem;
 `;
 
 export default App;
