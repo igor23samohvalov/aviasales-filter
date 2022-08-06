@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { styledTheme } from './Global';
+import styled from "styled-components";
+import { styledTheme } from "./Global";
 
 export const CheckboxContainer = styled.div`
   flex-grow: 1;
@@ -15,8 +15,8 @@ export const CheckboxContainer = styled.div`
 
     &:hover > button {
       display: block;
-    };
-  };
+    }
+  }
 `;
 export const StyledCheckbox = styled.input`
   width: 1.25rem;
@@ -33,7 +33,6 @@ export const StyledButton = styled.button`
   margin-left: auto;
   border: none;
   font-weight: bold;
-  
 
   &.active {
     display: block;

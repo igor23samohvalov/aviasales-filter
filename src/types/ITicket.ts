@@ -10,4 +10,4 @@ export default interface ITicket {
   carrier: string;
   stops: number;
   price: number;
-};
+}

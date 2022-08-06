@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { IoIosAirplane } from 'react-icons/io';
-import { styledTheme } from './Global';
+import styled from "styled-components";
+import { IoIosAirplane } from "react-icons/io";
+import { styledTheme } from "./Global";
 
 export const Card = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const Card = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-  };
+  } ;
 `;
 export const Purchase = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const Purchase = styled.div`
 
   @media (max-width: 768px) {
     border-bottom: 1px solid ${styledTheme.fontLightColor};
-  };
+  } ;
 `;
 export const PurchaseButton = styled.button`
   width: 100%;
@@ -68,7 +68,8 @@ export const TimeBlock = styled.div`
   @media (max-width: 768px) {
     flex-grow: 2;
 
-    strong, span {
+    strong,
+    span {
       font-size: 12px;
     }
   }
